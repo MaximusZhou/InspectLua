@@ -14,7 +14,7 @@
 
 #include "lua.h"
 #include "lauxlib.h"
-#include "lualib.h"
+#include "lualib.h" //for luaL_openlibs
 
 int main(void)
 {
