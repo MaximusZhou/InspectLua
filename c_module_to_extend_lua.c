@@ -41,7 +41,9 @@ static int l_map(lua_State *L)
 	return 0; /*no return value be pushed in stack*/
 }
 
-
+/*
+**test upvalue in c function
+*/
 static int t_tuple(lua_State *L)
 {
 	int default_value = 0;

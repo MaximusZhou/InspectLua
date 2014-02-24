@@ -1,19 +1,26 @@
 /*
 	
 	Example:
-	$gcc -Wall test_extend_lua_by_c.c util.c  c_function_to_extend_lua.c c_module_to_extend_lua.c -llua -lm -ldl -o  test_extend_lua_by_c
+	$gcc -Wall test_extend_lua_by_c.c util.c  c_function_to_extend_lua.c c_module_to_extend_lua.c c_userdata_to_extend_lua.c -llua -lm -ldl -o  test_extend_lua_by_c
 	$./test_extend_lua_by_c
+	--extend lua by c function--
 	libsin: -0.98803162409286
 	mysin:  -0.98803162409286
+	--extend lua by c module--
 	mysininmodule:  -0.98803162409286
 	i:      2
 	i:      4
 	i:      6
+	--test upvalue in c function--
 	10
 	hi
-	table: 0xc00090
-	10      hi      table: 0xc00090 3
-
+	table: 0x1c153f0
+	10      hi      table: 0x1c153f0        3
+	--test userdata--
+	userdata: 0x1c15af8
+	1000
+	true
+	false
 
 	Analyse:
 
@@ -27,6 +34,7 @@
 #include "c_function_to_extend_lua.h"
 
 int luaopen_mylib(lua_State *L);
+int luaopen_arraylib(lua_State *L);
 
 void open_c_func_to_extend_lua(lua_State *L)
 {
@@ -37,6 +45,7 @@ void open_c_func_to_extend_lua(lua_State *L)
 
 	/*open c module*/
 	luaopen_mylib(L);
+	luaopen_arraylib(L);
 }
 
 int main(void)
