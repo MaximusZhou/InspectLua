@@ -94,17 +94,40 @@ static int getsize(lua_State *L)
 	return 1;
 }
 
-static const struct luaL_Reg arraylib[] = {
+static int array2string(lua_State *L)
+{
+	NumArray *a = checkarray(L);
+	luaL_argcheck(L,a != NULL,1,"bit array expected");
+
+	lua_pushfstring(L,"array(%d)",a->size);
+
+	return 1;
+}
+
+static const struct luaL_Reg arraylib_f[] = {
 	{"new",newarray},
+	{NULL,NULL},
+};
+
+static const struct luaL_Reg arraylib_m[] = {
 	{"set",setarray},
 	{"get",getarray},
 	{"size",getsize},
+	{"__tostring",array2string},
 	{NULL,NULL},
 };
 
 int luaopen_arraylib(lua_State *L)
 {
 	luaL_newmetatable(L,UDATA_MTABLE_NAME);
-	luaL_register(L,"array",arraylib);
+	
+	/*metatable.__index = metatable*/
+	lua_pushvalue(L,-1);
+	lua_setfield(L,-2,"__index");
+
+	/*save interface in metatable*/
+	luaL_register(L,NULL,arraylib_m); 
+
+	luaL_register(L,"array",arraylib_f);
 	return 1;
 }

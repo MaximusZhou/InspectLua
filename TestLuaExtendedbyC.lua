@@ -35,12 +35,28 @@ print("--test userdata--")
 --
 local SIZE = 1000
 a = array.new(SIZE)
-print(a)
-print(array.size(a))
+
+--[[
+print(a) --userdata: 0x1c15af8  
+print(array.size(a)) --1000
 for i = 1,SIZE do
 	array.set(a,i,i%5==0)
 end
 
-print(array.get(a,10))
-print(array.get(a,9))
+print(array.get(a,10)) --true
+print(array.get(a,9))  --false
 --print(array.get(io.stdin,10)) --cannot run config. file:TestLuaExtendedbyC.lua:46: bad argument #1 to 'get' (MyArray expected, got userdata)
+--]]
+
+print(a) --userdata: 0x1c15af8  
+print(a:size()) --1000
+for i = 1,SIZE do
+	a:set(i,i%5==0)
+end
+
+print(a:get(10)) --true
+print(a:get(9))  --false
+
+for name in dir(".") do
+	print(name)
+end

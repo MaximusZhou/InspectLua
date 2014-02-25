@@ -17,7 +17,7 @@
 	table: 0x1c153f0
 	10      hi      table: 0x1c153f0        3
 	--test userdata--
-	userdata: 0x1c15af8
+	array(1000)
 	1000
 	true
 	false
@@ -35,6 +35,7 @@
 
 int luaopen_mylib(lua_State *L);
 int luaopen_arraylib(lua_State *L);
+int luaopen_dir(lua_State *L);
 
 void open_c_func_to_extend_lua(lua_State *L)
 {
@@ -46,6 +47,9 @@ void open_c_func_to_extend_lua(lua_State *L)
 	/*open c module*/
 	luaopen_mylib(L);
 	luaopen_arraylib(L);
+
+	/*register c function to use userdata with gc*/
+	luaopen_dir(L);
 }
 
 int main(void)
