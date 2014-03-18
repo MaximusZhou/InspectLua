@@ -33,5 +33,5 @@ InspectLua
     TestBindingCppWithLua.lua
     
     binding_cpp_with_lua.cpp
-    binding_cpp_with_lua.hpp
+    binding_cpp_with_lua.hpp        --定义了模板，可以方便封装要在lua中使用的类以及方法
     test_binding_cpp_with_lua.hpp
