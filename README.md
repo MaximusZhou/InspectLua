@@ -28,3 +28,10 @@ InspectLua
     c_userdata_with_gc_to_extend_lua.c      --测试lua在回收userdata时，会调用相应元表的__gc对应方法
     test_extend_lua_by_c.c
     
+把C++中定义的类以及成员方法，在lua中使用，相关的文件有:
+
+    TestBindingCppWithLua.lua
+    
+    binding_cpp_with_lua.cpp
+    binding_cpp_with_lua.hpp
+    test_binding_cpp_with_lua.hpp
