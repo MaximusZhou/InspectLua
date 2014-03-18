@@ -6,6 +6,7 @@
 	$./binding_cpp_with_lua
 	in constructor
 	in foo
+	object member value:    8
 	in destructor
 
 	Analyse:

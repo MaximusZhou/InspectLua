@@ -34,7 +34,7 @@ template<class T> class Luna {
 			lua_setmetatable(L,-2); //set userdata metatable
 			lua_settable(L,-3); //table[0] = userdataobj
 
-			for (int i = 0; T::Register[i].name; i ++)
+			for (int i = 0; T::Register[i].name; i++)
 			{
 				lua_pushstring(L,T::Register[i].name);
 				lua_pushnumber(L,i);
@@ -46,7 +46,7 @@ template<class T> class Luna {
 		}
 
 		static int thunk(lua_State *L) {
-			int i = (int)lua_tonumber(L,lua_upvalueindex(i));
+			int i = (int)lua_tonumber(L,lua_upvalueindex(1));
 			
 			lua_pushnumber(L,0);
 			lua_gettable(L,1);
