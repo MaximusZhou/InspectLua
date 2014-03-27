@@ -39,7 +39,7 @@ template<class T> class Luna {
 				lua_pushstring(L,T::Register[i].name);
 				lua_pushnumber(L,i);
 				lua_pushcclosure(L,&Luna<T>::thunk,1);
-				lua_settable(L,-3);
+				lua_settable(L,-3); //table["funcname"] = funcnameofuserdata
 			}
 
 			return 1;

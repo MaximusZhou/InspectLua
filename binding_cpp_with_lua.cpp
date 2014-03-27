@@ -6,6 +6,8 @@
 	$./binding_cpp_with_lua
 	in constructor
 	in foo
+	in foo
+	haha,extend
 	object member value:    8
 	in destructor
 
