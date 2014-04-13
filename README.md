@@ -41,5 +41,17 @@ InspectLua
     LuaBridge/             
     study_lua_bridge_main.cpp  
     study_lua_bridge.lua
+    
+利用LuaBridge绑定C++到Lua，相关的文件有：
+
+    TestBindingCppWithLua.lua
+    test_binding_cpp_with_lua.cpp
+    binding_cpp_with_lunafive.hpp
+    
+利用lunar绑定C++到Lua，相关的文件有：
+
+    lunar_test_script.lua
+    lunar_test_main.cpp
+    lunar.hpp
 
 
