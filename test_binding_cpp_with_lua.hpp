@@ -6,7 +6,7 @@
 #define TEST_BINDING_CPP_WITH_LUA
 
 #include <stdlib.h>
-#include "binding_cpp_with_lua.hpp"
+#include "binding_cpp_with_lunafive.hpp"
 
 class Foo {
 	public:
@@ -29,24 +29,48 @@ class Foo {
 			lua_pushnumber(L,member);
 			return 1;
 		}
+
+		
+		int getmember(lua_State *L) {
+			lua_pushnumber(L,member);
+			return 1;
+		}
+
+		int setmember(lua_State *L){
+			int value = luaL_checkint(L,1);
+			member = value;
+			return 0;
+		}
+
 		
 		~Foo() {
 			printf("in destructor\n");
 		}
 
 		static const char className[];
-		static const Luna<Foo>::RegTpe Register[];
+		static const Luna<Foo>::FunctionType methods[];
+		static const Luna<Foo>::PropertyType properties[];
 
 	private:
 		int member;
 };
 
 const char Foo::className[] = "Foo";
-const Luna<Foo>::RegTpe Foo::Register[] = {
-	{"foo",&Foo::foo},
-	{"set_member",&Foo::set_member},
-	{"get_member",&Foo::get_member},
-	{0}
+
+#define method(class, funcname) {#funcname, &class::funcname}
+const Luna<Foo>::FunctionType Foo::methods[] = {
+	method(Foo,foo),
+	method(Foo,set_member),
+	method(Foo,get_member),
+	{0,0},
+};
+
+#define property(class,propertyname,getfuncname,setfuncname) \
+					{#propertyname,&class::getfuncname,&class::setfuncname}
+
+const Luna<Foo>::PropertyType Foo::properties[] = {
+	property(Foo,member,getmember,setmember),
+	{0,0,0},
 };
 
 #endif
