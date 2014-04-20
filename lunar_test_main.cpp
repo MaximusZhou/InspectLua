@@ -1,3 +1,4 @@
+//g++ -o lunar_test_main lunar_test_main.cpp -llua -lm -ldl
 extern "C" {
 	#include "lua.h"
 	#include "lauxlib.h"
@@ -81,6 +82,14 @@ static int application (lua_State *L)
 	lua_pushliteral(L, "main");
 	lua_gettable(L, LUA_GLOBALSINDEX);
 	report(L, lua_pcall(L, 0, 0, tb));
+
+	lua_getglobal(L,"script_obj1");
+	lua_pushnumber(L, 100.00);
+	report(L, Lunar<Account>::call(L, "deposit", 1, 0, tb) < 0);
+
+	printf("script_obj1:");
+	lua_getglobal(L,"script_obj1");
+	report(L, Lunar<Account>::call(L, "show",    0, 0, tb) < 0);
 
 	return 0;
 }

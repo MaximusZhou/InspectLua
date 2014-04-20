@@ -26,5 +26,12 @@ function main()
 
 	a:show() a:deposit(50.30) a:show() a:withdraw(25.10) a:show()
 	a:rob(10) a:show()
-	debug.debug()
+	--debug.debug()
 end
+
+--script_obj = Account() --error:bad argument #1 to 'Account' (number expected, got no value)
+script_obj1 = Account(10)
+script_obj2 = Account:new(20) 
+
+print("script_obj1 = ",script_obj1)
+print("script_obj2 = ",script_obj2)
