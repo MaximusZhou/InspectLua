@@ -20,8 +20,8 @@ getmetatable(Account).__index = parent
 function main()
 	print('a =', a)
 	print('b =', b)
-	print('metatable =', getmetatable(a))
-	print('Account =', Account)  -- the metatable of a is Account
+	print('metatable =', getmetatable(a))-- the metatable of a is Account,Not metatable table
+	print('Account =', Account)  
 	table.foreach(Account, print)
 
 	a:show() a:deposit(50.30) a:show() a:withdraw(25.10) a:show()
